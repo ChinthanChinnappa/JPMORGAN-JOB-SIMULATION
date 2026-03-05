@@ -216,7 +216,7 @@ Possible extensions:
 
 # Author
 
-**Chinthan Chinnappa P T **
+Chinthan Chinnappa P T 
 
 Computer Science Engineering Student
 Interested in:
