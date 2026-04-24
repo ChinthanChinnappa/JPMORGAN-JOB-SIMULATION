@@ -1,17 +1,26 @@
-# Credit Risk Modeling System
+# Credit Risk Modeling & Pricing System
 
-### Probability of Default (PD) & FICO Rating Quantization
+### Probability of Default (PD), Expected Loss (EL) & FICO Quantization
 
-This project implements a **credit risk modeling pipeline** used in financial institutions to evaluate loan risk. It includes:
+This project implements an **end-to-end credit risk modeling pipeline** used in financial systems to evaluate borrower risk and support lending decisions.
 
-1. Probability of Default (PD) prediction
-2. Expected Loss estimation
-3. FICO score rating bucket optimization
+It combines **machine learning, statistical modeling, and credit scoring techniques** to transform raw borrower data into actionable risk metrics.
 
-The system demonstrates how banks convert **raw borrower data into risk metrics used for lending decisions**.
+---
 
+# 🚀 Project Overview
 
-# Project Architecture
+The system performs three core functions:
+
+* Predicts **Probability of Default (PD)** using ML models
+* Estimates **Expected Loss (EL)** for financial exposure
+* Optimizes **FICO score segmentation** into risk-based rating buckets
+
+This reflects how banks and fintech platforms build **risk-adjusted lending and pricing strategies**.
+
+---
+
+# 🏗 Project Architecture
 
 ```
 credit-risk-model/
@@ -24,41 +33,32 @@ credit-risk-model/
 
 ---
 
-# Key Features
+# 📊 Key Features
 
-## 1. Probability of Default (PD) Model
+## 1. Probability of Default (PD) Modeling
 
-Implemented using **machine learning models**:
+Implemented using:
 
 * Logistic Regression
 * Random Forest
 
-The system automatically selects the **best performing model based on ROC-AUC score**.
+✔ Automatic model selection based on **ROC-AUC score**
+✔ Outputs calibrated probability of default for each borrower
 
-Outputs:
+---
 
-* Probability of Default (PD)
-* Expected Loss (EL)
+## 2. Expected Loss (EL) Estimation
 
-Expected Loss formula:
+Implements the standard financial risk formula:
 
 ```
 Expected Loss = PD × Loss Given Default × Exposure
 ```
 
----
+✔ Estimates potential loss for each borrower
+✔ Incorporates exposure and recovery assumptions
 
-## 2. Expected Loss Estimation
-
-The model estimates potential financial losses for lenders.
-
-Inputs:
-
-* Borrower features
-* Loan exposure amount
-* Recovery rate
-
-Example output:
+Example:
 
 ```
 Predicted PD: 0.083
@@ -69,27 +69,24 @@ Expected Loss: $7470
 
 ## 3. FICO Rating Quantization
 
-This module converts continuous **FICO credit scores into rating buckets**.
+Transforms continuous credit scores into discrete risk buckets using:
 
-Three different quantization techniques are implemented:
+### • Equal Frequency Bucketing
 
-### 1. Equal Frequency Bucketing
+Ensures equal distribution of borrowers per bucket
 
-Splits scores so each bucket has similar number of borrowers.
+### • K-Means Clustering
 
-### 2. Mean Squared Error Minimization
+Minimizes intra-group variance (MSE-based segmentation)
 
-Uses **K-Means clustering** to group similar credit scores.
+### • Log-Likelihood Optimization (Advanced)
 
-### 3. Log-Likelihood Maximization (Advanced)
-
-Uses **dynamic programming** to create rating buckets that best explain default probabilities.
-
-This technique is used in **banking risk modeling and Basel frameworks**.
+Uses dynamic programming to maximize likelihood of default separation
+✔ Inspired by techniques used in **banking risk frameworks (Basel)**
 
 ---
 
-# Technologies Used
+# 🛠 Technologies Used
 
 * Python
 * Pandas
@@ -100,26 +97,19 @@ This technique is used in **banking risk modeling and Basel frameworks**.
 
 ---
 
-# Installation
-
-Clone the repository:
+# ⚙️ Installation
 
 ```bash
 git clone https://github.com/yourusername/credit-risk-model.git
 cd credit-risk-model
-```
-
-Install dependencies:
-
-```bash
 pip install pandas numpy scikit-learn
 ```
 
 ---
 
-# Usage
+# ▶️ Usage
 
-## Train Probability of Default Model
+## Train Model
 
 ```python
 from loan_pd_expected_loss_model import LoanPDModel
@@ -130,7 +120,7 @@ model.train("customer_loan_data.csv")
 
 ---
 
-## Predict Borrower Risk
+## Predict Risk
 
 ```python
 borrower = {
@@ -146,13 +136,12 @@ expected_loss = model.expected_loss(borrower, exposure=100000)
 
 ---
 
-## Generate FICO Rating Buckets
+## Generate FICO Buckets
 
 ```python
 from fico_rating_quantization import FICORatingQuantizer
 
 quantizer = FICORatingQuantizer(n_buckets=5)
-
 quantizer.fit_log_likelihood(fico_scores, defaults)
 
 ratings = quantizer.transform(fico_scores)
@@ -160,9 +149,9 @@ ratings = quantizer.transform(fico_scores)
 
 ---
 
-# Example Dataset
+# 📁 Dataset Format
 
-The dataset should contain fields like:
+Required fields:
 
 ```
 income
@@ -176,60 +165,42 @@ fico_score
 Where:
 
 ```
-default = 1 → borrower defaulted
-default = 0 → borrower did not default
+default = 1 → borrower defaulted  
+default = 0 → borrower did not default  
 ```
 
 ---
 
-# Real World Applications
+# 🌍 Real-World Applications
 
-This system reflects techniques used in:
-
-* Investment banks
-* Credit risk departments
-* Fintech lending platforms
-* Basel risk compliance systems
-
-Applications include:
-
-* Loan approval systems
-* Credit scoring engines
-* Risk-adjusted pricing
+* Credit scoring systems
+* Loan approval engines
+* Risk-adjusted pricing models
 * Portfolio risk analysis
+* Fintech lending platforms
+* Banking risk & Basel-style modeling
 
 ---
 
-# Future Improvements
+# 🔮 Future Improvements
 
-Possible extensions:
-
-* Gradient Boosting models (XGBoost)
+* Gradient Boosting (XGBoost / LightGBM)
 * Feature engineering pipelines
 * Model explainability (SHAP)
-* Credit portfolio simulation
+* Portfolio simulation models
 * REST API deployment
-* Real-time scoring system
+* Real-time credit scoring
 
 ---
 
-# Author
+# 👤 Author
 
-Chinthan Chinnappa P T 
-
+**Chinthan Chinnappa P T**
 Computer Science Engineering Student
-Interested in:
+
+Interests:
 
 * Data Science
 * Quantitative Finance
 * Risk Modeling
 * Machine Learning Systems
-* Backend Systems 
-
----
-
-# License
-
-This project is open-source and available under the MIT License.
-
-#
